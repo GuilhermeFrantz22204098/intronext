@@ -24,46 +24,10 @@
     "rating": 5
   },
   {
-    "title": "Typescript",
-    "image": "typescript_logo",
-    "description": "Superconjunto tipado do JavaScript que adiciona tipagem estática opcional, melhorando a manutenibilidade.",
-    "rating": 4
-  },
-  {
-    "title": "JSON",
-    "image": "json_icon",
-    "description": "Formato de texto simples e leve para intercâmbio de dados, amplamente utilizado em APIs.",
-    "rating": 3
-  },
-  {
-    "title": "API RESTful",
-    "image": "rest_api_icon",
-    "description": "Conjunto de princípios de arquitetura para a criação de serviços web que utilizam o protocolo HTTP.",
-    "rating": 4
-  },
-  {
-    "title": "Swagger",
-    "image": "swagger_logo",
-    "description": "Ferramenta para documentar, visualizar e interagir com APIs REST, seguindo a especificação OpenAPI.",
-    "rating": 3
-  },
-  {
     "title": "GitHub",
     "image": "github_logo",
     "description": "Plataforma de hospedagem de código para controle de versão usando Git e colaboração em projetos.",
     "rating": 5
-  },
-  {
-    "title": "Codespaces",
-    "image": "codespaces_icon",
-    "description": "Ambiente de desenvolvimento instantâneo baseado em nuvem, acessível diretamente no GitHub.",
-    "rating": 4
-  },
-  {
-    "title": "GitHub Pages",
-    "image": "github_pages_icon",
-    "description": "Serviço de hospedagem estática gratuita oferecido pelo GitHub, ideal para portfólios e projetos simples.",
-    "rating": 4
   },
   {
     "title": "React.js",
