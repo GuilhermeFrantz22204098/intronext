@@ -1,4 +1,4 @@
-export default function Page() {
+export default function sobrePage() {
     return (
         <>
             <h2>Desenvolvimento Web Moderno</h2>

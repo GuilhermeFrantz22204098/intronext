@@ -1,6 +1,8 @@
 import React from 'react'
+import Link from "next/link"
+import Caracteristica from '@/components/Caracteristica/Caracteristica'
 
-export default function page() {
+export default function caracteristicasPage() {
     const caracteristicas = [
         'JSX, sintaxe que mistura HTML e JS.',
         'Componentes, funções que retornam JSX.',
@@ -16,7 +18,13 @@ export default function page() {
             <h2>Caracteristicas do React e Next.js</h2>
             <ul>
                 {caracteristicas.map((caracteristica, i) => {
-                    return <li key={i}>{caracteristica}</li>
+                    return(
+                        <Link key={i} href={`/caracteristicas/${i}`}>
+                            <li>
+                                <Caracteristica texto={caracteristica}/>
+                            </li>
+                        </Link>
+                    ) 
                 })}
             </ul>
         </>
