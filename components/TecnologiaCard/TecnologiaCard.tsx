@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ContadorPersonalizado from "@/components/ContadorPersonalizado/ContadorPersonalizado";
 
 interface TecnologiaProps {
     titulo: string
@@ -20,6 +21,7 @@ export default function TecnologiaCard(props: TecnologiaProps) {
                 <h3 className="text-base font-semibold text-gray-800">
                     {props.titulo}
                 </h3>
+                <ContadorPersonalizado title={props.titulo} />
             </li>
         </>
     )
