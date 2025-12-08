@@ -24,34 +24,37 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   const data = new Date()
-
   return (
-    <html lang="en">
-      <body className='flex flex-col justify-start gap-4 p-20 items-center min-h-screen'>
-        
-        <header className="flex flex-col items-center">
-          <h1>React & Next.js</h1>
-          <nav className="flex gap-4">
-            <Link href="/">Intro</Link>
-            <Link href="/sobre">Sobre</Link>
-            <Link href="/caracteristicas">Caracteristicas</Link>
-            <Link href="/tecnologias">Tecnologias</Link>
-            <Link href="/projetos">Projetos</Link>
-            <Link href="/contador">Contador</Link>
-            <Link href="/input">Input</Link>
-            <Link href="/categorias">Categorias</Link>
-            <Link href="/produtos">Produtos</Link>
-          </nav>
-        </header>
-        
-        <main className="bg-blue-900 p-5 rounded-2xl max-w-2xl min-h-[70vh]">
-          {children}
-        </main>
-        
-        <footer>DIW {data.getFullYear()} <Clock /></footer>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="bg-gray-50 text-gray-800 min-h-screen font-sans">
+        <div className="max-w-7xl mx-auto p-4 md:p-8 flex flex-col items-center">
+          
+          <header className="w-full flex flex-col items-center gap-4 py-6 border-b border-gray-200">
+            <h1 className="text-2xl font-bold tracking-tight text-gray-900">DIW Labs</h1>
+            
+            <nav className="flex flex-wrap justify-center gap-4 text-sm font-medium">
+              <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Intro</Link>
+              <Link href="/sobre" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Sobre</Link>
+              <Link href="/caracteristicas" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Caracteristicas</Link>
+              <Link href="/tecnologias" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Tecnologias</Link>
+              <Link href="/projetos" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Projetos</Link>
+              <Link href="/contador" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Contador</Link>
+              <Link href="/input" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Input</Link>
+              <Link href="/categorias" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md">Categorias</Link>
+              <Link href="/produtos" className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded-md font-semibold">Produtos</Link>
+            </nav>
+          </header>
+          
+          <main className="w-full bg-white p-6 md:p-8 my-8 shadow-sm border border-gray-100 rounded-xl min-h-[70vh]">
+            {children}
+          </main>
+          
+          <footer className="w-full text-center text-xs text-gray-500 pt-4 border-t border-gray-100 flex justify-center items-center gap-2">
+            DIW {data.getFullYear()} <Clock />
+          </footer>
 
+        </div>
       </body>
     </html>
   );

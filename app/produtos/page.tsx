@@ -116,36 +116,39 @@ export default function ProdutosPage() {
     if (isLoading) return <Spinner />;
 
     return (
-        <div className="container mx-auto p-4">
-            <h2 className="text-3xl font-bold mb-6 text-center">Loja DEISI</h2>
+        <div className="container mx-auto">
+            <h2 className="text-3xl font-light mb-8 text-center text-gray-900">Loja DEISI</h2>
             
-            <div className="flex flex-col md:flex-row justify-center gap-4 mb-8 bg-gray-100 p-4 rounded-lg">
+            <div className="flex flex-col md:flex-row justify-center gap-4 mb-8">
                 <input
                     type="text"
-                    placeholder="Pesquisar"
-                    className="p-2 border border-gray-300 rounded-md w-full md:w-80 text-black"
+                    placeholder="Pesquisar por nome..."
+                    className="p-2 border border-gray-300 rounded-md w-full md:w-80 text-gray-700 placeholder-gray-400 transition-colors"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
                 <select 
-                    className="p-2 border border-gray-300 rounded-md text-black"
+                    className="p-2 border border-gray-300 rounded-md text-gray-700 transition-colors"
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
                 >
-                    <option value="">Automático</option>
-                    <option value="price-asc">Menor preço</option>
-                    <option value="price-desc">Maior preço</option>
-                    <option value="name-asc">Nome A-Z</option>
-                    <option value="name-desc">Nome Z-A</option>
+                    <option value="">Ordenação Padrão</option>
+                    <option value="price-asc">Preço: Menor para Maior</option>
+                    <option value="price-desc">Preço: Maior para Menor</option>
+                    <option value="name-asc">Nome: A-Z</option>
+                    <option value="name-desc">Nome: Z-A</option>
                 </select>
             </div>
 
-            <div className="flex flex-col lg:flex-row gap-8">
-                
-                <div className="flex-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="flex flex-col gap-8">
+                <div className="w-full">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {filteredData.map((product) => (
-                            <Link key={product.id} href={`/produtos/${product.id}`} className="hover:no-underline">
+                            <Link 
+                                key={product.id} 
+                                href={`/produtos/${product.id}`} 
+                                className="hover:no-underline"
+                            >
                                 <ProdutoCard 
                                     produto={product} 
                                     onInteract={buyProduct} 
@@ -155,75 +158,75 @@ export default function ProdutosPage() {
                     </div>
                 </div>
 
-                <div className="w-full lg:w-1/3 bg-gray-50 p-4 rounded-xl border-2 border-gray-200 h-fit sticky top-4">
-                    <h3 className="text-xl font-bold mb-4 flex justify-between items-center">
+                {/* Added max-w-4xl and mx-auto here */}
+                <div className="w-full max-w-4xl mx-auto bg-white p-5 rounded-xl border border-gray-200 shadow-lg">
+                    <h3 className="text-xl font-semibold mb-4 pb-2 flex justify-between items-center text-gray-900">
                         Carrinho
-                        <span className="bg-blue-600 text-white text-sm px-2 py-1 rounded-full">{cart.length}</span>
+                        <span className="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-medium">{cart.length}</span>
                     </h3>
-                    
-                    {cart.length === 0 ? (
-                        <p className="text-gray-500 italic">arrinho vazio</p>
-                    ) : (
-                        <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-2 mb-4">
+
+                    <div className="flex flex-wrap gap-3 mb-4">
                             {cart.map((id, index) => {
                                 const product = data?.find(p => p.id === id);
                                 if (!product) return null;
                                 return (
-                                    <ProdutoCard 
-                                        key={`${id}-${index}`} 
-                                        produto={product} 
-                                        isOnCart={true} 
-                                        onInteract={removeFromCart} 
-                                    />
+                                    <div key={`${id}-${index}`} className="w-full sm:w-auto">
+                                         <ProdutoCard 
+                                            produto={product} 
+                                            isOnCart={true} 
+                                            onInteract={removeFromCart} 
+                                            isSmall={true}
+                                        />
+                                    </div>
                                 );
                             })}
                         </div>
-                    )}
 
-                    <div className="mt-4 pt-4 border-t border-gray-300 space-y-4">
-                        
-                        <div className="flex items-center space-x-2">
-                            <input 
-                                type="checkbox" 
-                                id="student" 
-                                className="w-4 h-4"
-                                checked={isStudent}
-                                onChange={(e) => setIsStudent(e.target.checked)}
-                            />
-                            <label htmlFor="student" className="text-sm font-medium">
-                                Sou estudante DEISI
-                            </label>
+                    <div className="mt-4 pt-4 space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="flex items-center space-x-2">
+                                <input 
+                                    type="checkbox" 
+                                    id="student"
+                                    checked={isStudent}
+                                    onChange={(e) => setIsStudent(e.target.checked)}
+                                />
+                                <label htmlFor="student" className="text-sm font-medium text-gray-700">
+                                    Sou estudante DEISI
+                                </label>
+                            </div>
+
+                            <div className="flex items-center gap-2">
+                                <label htmlFor="coupon" className="text-xs font-medium text-gray-500 whitespace-nowrap">
+                                    Cupão:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="coupon"
+                                    placeholder="DEISI123"
+                                    className="flex-1 p-2 border border-gray-300 rounded-lg text-sm text-gray-900 placeholder-gray-400 transition-colors"
+                                    value={coupon}
+                                    onChange={(e) => setCoupon(e.target.value)}
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <label htmlFor="coupon" className="block text-sm font-medium text-gray-700 mb-1">
-                                Cupão de desconto
-                            </label>
-                            <input
-                                type="text"
-                                id="coupon"
-                                placeholder="Insira o seu código"
-                                className="w-full p-2 border border-gray-300 rounded text-sm text-black"
-                                value={coupon}
-                                onChange={(e) => setCoupon(e.target.value)}
-                            />
-                        </div>
+                        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-2">
+                            <div className="text-2xl font-bold text-gray-900">
+                                {totalCost.toFixed(2)} €
+                            </div>
 
-                        <div className="flex justify-between items-center text-xl font-bold pt-2">
-                            <span>Total:</span>
-                            <span>{totalCost.toFixed(2)} €</span>
+                            <button 
+                                className="w-full md:w-auto px-8 bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+                                onClick={handleBuy}
+                                disabled={cart.length === 0}
+                            >
+                                Finalizar Compra
+                            </button>
                         </div>
-
-                        <button 
-                            className="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                            onClick={handleBuy}
-                            disabled={cart.length === 0}
-                        >
-                            Comprar Agora
-                        </button>
 
                         {buyMessage && (
-                            <div className={`mt-4 p-3 rounded text-sm text-center ${buyMessage.includes('Erro') ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                            <div className={`mt-4 p-3 rounded-lg text-sm text-center font-medium`}>
                                 {buyMessage}
                             </div>
                         )}
